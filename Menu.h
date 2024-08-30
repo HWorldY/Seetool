@@ -26,7 +26,7 @@ class Menu {
 		bool AddSubMenuFunc(string ID, OPT_FUNC func);
 		Option* ParsePath(string path);
 		string GetPath();
-		void AddSubMenu(string ID,string text,bool end,OPT_FUNC func=nullptr);
+		void AddSubMenu(string ID,string text,bool end,OPT_FUNC func=nullptr, bool enable = true);
 		bool DeleteMenu(string ID);
 		Option* GetOption(string ID);
 		Menu* GetMenu(string ID);

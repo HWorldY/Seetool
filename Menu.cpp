@@ -65,10 +65,10 @@ string Menu::GetPath()
 	if (parent == nullptr)return "Seetool/";
 	return this->parent->GetPath() + opt.ID + '/';
 }
-void Menu::AddSubMenu(string ID, string text, bool end, OPT_FUNC func) {
+void Menu::AddSubMenu(string ID, string text, bool end, OPT_FUNC func, bool enable) {
 	Menu* newmenu = nullptr;
 	if (!end) newmenu = new Menu(this);
-	Option option = { ID,text,true,end,newmenu,func };
+	Option option = { ID,text,enable,end,newmenu,func };
 	menu.push_back(option);
 	if (newmenu != nullptr) {
 		newmenu->opt.enable = option.enable;
@@ -80,10 +80,9 @@ void Menu::AddSubMenu(string ID, string text, bool end, OPT_FUNC func) {
 }
 Option* Menu::GetOption(string ID)
 {
-
 	auto it = menu.begin();
 	for (; it != menu.end(); it++) {
-		if (it->ID == ID)return &(*it);
+		if (it->ID == ID&&it->enable==1)return &(*it);
 	}
 	return nullptr;
 }

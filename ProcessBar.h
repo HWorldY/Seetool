@@ -17,16 +17,20 @@ void gotoxy(int xpos, int ypos) {
 }
 class ProcessBar {
 public:
+	string item;
 	int TotalSize;
 	int Parts;
 	int x;
 	int y;
 	int Current;
-	ProcessBar(int TotalSize, int Parts, int x, int y) {
+	ProcessBar(string item,int TotalSize, int Parts, int x, int y) {
+		gotoxy(x, y);
+		printf("%s", item.c_str());
+		COORD pos=getxy();
 		this->TotalSize = TotalSize;
 		this->Parts = Parts;
-		this->x = x;
-		this->y = y;
+		this->x = pos.X;
+		this->y = pos.Y;
 		Current = 0;
 	}
 	void Begin() {
